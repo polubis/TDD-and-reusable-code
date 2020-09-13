@@ -1,6 +1,11 @@
 export type Fn<T> = (value: T) => boolean;
 
-export class Field<T> {
+export interface FieldBase<T> {
+  value: T;
+  invalid: boolean;
+}
+
+export class Field<T> implements FieldBase<T> {
   static init = <T>(value: T, fns: Fn<T>[] = []): Field<T> => new Field<T>(value, fns);
 
   public invalid: boolean;
